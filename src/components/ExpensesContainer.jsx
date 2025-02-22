@@ -1,9 +1,11 @@
 import ExpenseItem from "./ExpenseItem";
 import "./ExpensesContainer.css";
+import StatContainer from "./StatContainer";
 
 const ExpensesContainer = ({ data }) => {
   return (
     <div className="expenses">
+      <StatContainer />
       {data.map((expense) => {
         return (
           <ExpenseItem
