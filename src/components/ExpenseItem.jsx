@@ -13,6 +13,7 @@ const ExpenseItem = ({ price, title, date }) => {
       </div>
       <div className="expense-item__description">
         <h2>{title}</h2>
+        <button>Update TItle !!!</button>
         <div className="expense-item__price">$ {price}</div>
       </div>
     </div>
