@@ -4,9 +4,13 @@ import ExpensesFilter from "./ExpensesFilter";
 import StatContainer from "./StatContainer";
 
 const ExpensesContainer = ({ data }) => {
+  const years = [
+    "All",
+    ...new Set(data.map((el) => el.date.getFullYear()).sort()),
+  ];
   return (
     <div className="expenses">
-      <ExpensesFilter />
+      <ExpensesFilter years={years} />
       <StatContainer data={data} />
       {data.map((expense) => {
         return (
