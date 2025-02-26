@@ -5,7 +5,7 @@ import StatContainer from "./StatContainer";
 const ExpensesContainer = ({ data }) => {
   return (
     <div className="expenses">
-      <StatContainer />
+      <StatContainer data={data} />
       {data.map((expense) => {
         return (
           <ExpenseItem
