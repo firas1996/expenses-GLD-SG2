@@ -45,6 +45,7 @@ const AddExpenseForm = () => {
               name="title"
               placeholder="Title"
               onChange={inputChnageHandler}
+              value={formData.title}
             />
           </div>
           <div className="add-expense__control">
@@ -57,6 +58,7 @@ const AddExpenseForm = () => {
               min="0"
               step="0.01"
               onChange={inputChnageHandler}
+              value={formData.price}
             />
           </div>
           <div className="add-expense__control">
@@ -68,6 +70,7 @@ const AddExpenseForm = () => {
               min={minDate}
               max={maxDate}
               onChange={inputChnageHandler}
+              value={formData.date}
             />
           </div>
         </div>
