@@ -5,6 +5,10 @@ const AddExpenseForm = ({ childToParent }) => {
   const thisYear = new Date().getFullYear();
   const minDate = thisYear - 2 + "-01-01";
   const maxDate = `${thisYear + 2}-12-31`;
+  const [formVisibility, setFormVisibility] = useState(false);
+  const showFormHandler = () => {
+    setFormVisibility(!formVisibility);
+  };
   const [formData, setFormData] = useState({
     title: "",
     price: "",
@@ -41,49 +45,55 @@ const AddExpenseForm = ({ childToParent }) => {
   };
   return (
     <div className="add-expense">
-      <form onSubmit={submitHandler}>
-        <div className="add-expense__controls">
-          <div className="add-expense__control">
-            <label>Title</label>
-            <input
-              required
-              name="title"
-              placeholder="Title"
-              onChange={inputChnageHandler}
-              value={formData.title}
-            />
+      {formVisibility ? (
+        <form onSubmit={submitHandler}>
+          <div className="add-expense__controls">
+            <div className="add-expense__control">
+              <label>Title</label>
+              <input
+                required
+                name="title"
+                placeholder="Title"
+                onChange={inputChnageHandler}
+                value={formData.title}
+              />
+            </div>
+            <div className="add-expense__control">
+              <label>Price</label>
+              <input
+                required
+                name="price"
+                type="number"
+                placeholder="Price"
+                min="0"
+                step="0.01"
+                onChange={inputChnageHandler}
+                value={formData.price}
+              />
+            </div>
+            <div className="add-expense__control">
+              <label>Date</label>
+              <input
+                required
+                name="date"
+                type="date"
+                min={minDate}
+                max={maxDate}
+                onChange={inputChnageHandler}
+                value={formData.date}
+              />
+            </div>
           </div>
-          <div className="add-expense__control">
-            <label>Price</label>
-            <input
-              required
-              name="price"
-              type="number"
-              placeholder="Price"
-              min="0"
-              step="0.01"
-              onChange={inputChnageHandler}
-              value={formData.price}
-            />
+          <div className="add-expense__actions">
+            <button type="button" onClick={showFormHandler}>
+              Cancel
+            </button>
+            <button type="submit">Add Expense</button>
           </div>
-          <div className="add-expense__control">
-            <label>Date</label>
-            <input
-              required
-              name="date"
-              type="date"
-              min={minDate}
-              max={maxDate}
-              onChange={inputChnageHandler}
-              value={formData.date}
-            />
-          </div>
-        </div>
-        <div className="add-expense__actions">
-          <button type="button">Cancel</button>
-          <button type="submit">Add Expense</button>
-        </div>
-      </form>
+        </form>
+      ) : (
+        <button onClick={showFormHandler}>Add New Expense</button>
+      )}
     </div>
   );
 };
