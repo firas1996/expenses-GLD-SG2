@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./AddExpenseForm.css";
 
-const AddExpenseForm = () => {
+const AddExpenseForm = ({ childToParent }) => {
   const thisYear = new Date().getFullYear();
   const minDate = thisYear - 2 + "-01-01";
   const maxDate = `${thisYear + 2}-12-31`;
@@ -27,7 +27,12 @@ const AddExpenseForm = () => {
   };
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(formData);
+    childToParent({
+      id: Math.random(),
+      title: formData.title,
+      price: +formData.price,
+      date: new Date(formData.date),
+    });
     setFormData({
       title: "",
       price: "",
